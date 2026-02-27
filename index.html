@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Kalawant Art Exhibition</title>
 
 <style>
@@ -34,19 +35,19 @@ body::before{
 
 /* Sections */
 section{
-    height:100vh;
+    min-height:100vh;
     display:flex;
     justify-content:center;
     align-items:center;
     text-align:center;
-    padding:60px;
+    padding:60px 20px;
     position:relative;
 }
 
 /* Scroll reveal */
 .reveal{
     opacity:0;
-    transform:translateY(80px);
+    transform:translateY(60px);
     transition:all 1.2s ease;
 }
 
@@ -64,7 +65,7 @@ section{
         red, orange, yellow, green, blue, indigo, violet);
     border-radius:200px;
     filter:blur(45px);
-    opacity:0.22;
+    opacity:0.2;
     animation:floatCloud 25s infinite alternate ease-in-out;
 }
 
@@ -91,7 +92,7 @@ section{
 
 @keyframes floatOrb{
     0%{ transform:translateY(0); }
-    100%{ transform:translateY(-90px); }
+    100%{ transform:translateY(-80px); }
 }
 
 /* Typography */
@@ -155,10 +156,6 @@ button:hover{
 }
 
 /* QR Section */
-.qr-section{
-    background:white;
-}
-
 .qr-title{
     font-size:32px;
     letter-spacing:3px;
@@ -167,13 +164,14 @@ button:hover{
 
 .qr-image{
     width:300px;
+    max-width:80%;
     border-radius:25px;
     box-shadow:0 25px 50px rgba(0,0,0,0.15);
     transition:0.6s ease;
 }
 
 .qr-image:hover{
-    transform:scale(1.08) rotate(1deg);
+    transform:scale(1.08);
 }
 
 .qr-handle{
@@ -181,6 +179,48 @@ button:hover{
     font-size:18px;
     letter-spacing:2px;
     opacity:0.6;
+}
+
+/* ---------------- MOBILE VIEW ---------------- */
+@media (max-width:768px){
+
+    h1{
+        font-size:38px;
+        letter-spacing:3px;
+    }
+
+    .subtitle{
+        font-size:18px;
+    }
+
+    .statement{
+        font-size:20px;
+        line-height:1.6;
+    }
+
+    .details{
+        font-size:18px;
+    }
+
+    .qr-title{
+        font-size:22px;
+    }
+
+    button{
+        padding:12px 30px;
+        font-size:14px;
+    }
+
+    .cloud{
+        width:250px;
+        height:120px;
+        filter:blur(35px);
+    }
+
+    .orb{
+        width:80px;
+        height:80px;
+    }
 }
 </style>
 </head>
@@ -215,22 +255,16 @@ button:hover{
         05th March 2026<br>
         10:00 AM – 6:30 PM<br>
         Instrumentation Building, Quadrangle
-
         <br><br>
-
         <button onclick="scrollToQR()">Visit the Exhibition</button>
     </div>
 </section>
 
-<!-- Slide 4 (QR) -->
+<!-- Slide 4 -->
 <section class="qr-section">
     <div class="reveal">
         <h2 class="qr-title">Scan This to Know More</h2>
-
-        <img src="ce4e3bf5-ac94-4e06-9d19-dacb47c32094.png" 
-             alt="Kalawant Instagram QR"
-             class="qr-image">
-
+        <img src="ce4e3bf5-ac94-4e06-9d19-dacb47c32094.png" class="qr-image">
         <div class="qr-handle">@cummins_kalawant</div>
     </div>
 </section>
@@ -241,7 +275,7 @@ function revealOnScroll(){
     reveals.forEach((el)=>{
         const windowHeight=window.innerHeight;
         const elementTop=el.getBoundingClientRect().top;
-        if(elementTop < windowHeight - 100){
+        if(elementTop < windowHeight - 80){
             el.classList.add("active");
         }
     });
